@@ -13,7 +13,7 @@ services:
           - node.labels.role == mysql
     volumes:
       - /etc/localtime:/etc/localtime
-      - /opt/liveness/data/mysql/data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
       - /opt/liveness/config/mysql/conf/my.cnf:/etc/my.cnf
       - /opt/liveness/config/mysql/init:/docker-entrypoint-initdb.d/
     networks:
@@ -33,7 +33,7 @@ services:
           - node.labels.service-set == 1
     volumes:
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/execute1:/root/gethdata
+      - execute1_data:/root/gethdata
       - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
@@ -52,7 +52,7 @@ services:
           - node.labels.service-set == 2
     volumes:
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/execute2:/root/gethdata
+      - execute2_data:/root/gethdata
       - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
@@ -71,7 +71,7 @@ services:
           - node.labels.service-set == 3
     volumes:
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/execute3:/root/gethdata
+      - execute3_data:/root/gethdata
       - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
@@ -90,7 +90,7 @@ services:
           - node.labels.service-set == 4
     volumes:
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/execute4:/root/gethdata
+      - execute4_data:/root/gethdata
       - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
@@ -109,7 +109,7 @@ services:
           - node.labels.service-set == 5
     volumes:
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/execute5:/root/gethdata
+      - execute5_data:/root/gethdata
       - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
@@ -131,7 +131,7 @@ services:
     volumes:
       - /opt/liveness/config/attacker-config.toml:/root/config.toml
       - /opt/liveness/config/strategy-empty.json:/root/strategy.json
-      - /opt/liveness/data/attacker1:/root/attackerdata
+      - attacker1_data:/root/attackerdata
     networks:
       - meta
 
@@ -152,7 +152,7 @@ services:
     volumes:
       - /opt/liveness/config/attacker-normal.toml:/root/config.toml
       - /opt/liveness/config/strategy-empty.json:/root/strategy.json
-      - /opt/liveness/data/attacker2:/root/attackerdata
+      - attacker2_data:/root/attackerdata
     networks:
       - meta
 
@@ -179,7 +179,7 @@ services:
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/beacon1:/root/beacondata
+      - beacon1_data:/root/beacondata
     depends_on:
       - execute1
     networks:
@@ -206,7 +206,7 @@ services:
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/beacon2:/root/beacondata
+      - beacon2_data:/root/beacondata
     depends_on:
       - execute2
     networks:
@@ -233,7 +233,7 @@ services:
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/beacon3:/root/beacondata
+      - beacon3_data:/root/beacondata
     depends_on:
       - execute3
     networks:
@@ -260,7 +260,7 @@ services:
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/beacon4:/root/beacondata
+      - beacon4_data:/root/beacondata
     depends_on:
       - execute4
     networks:
@@ -287,7 +287,7 @@ services:
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/beacon5:/root/beacondata
+      - beacon5_data:/root/beacondata
     depends_on:
       - execute5
     networks:
@@ -313,7 +313,7 @@ services:
     volumes:
       - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/validator1:/root/validatordata
+      - validator1_data:/root/validatordata
     depends_on:
       - beacon1
     networks:
@@ -339,7 +339,7 @@ services:
     volumes:
       - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/validator2:/root/validatordata
+      - validator2_data:/root/validatordata
     depends_on:
       - beacon2
     networks:
@@ -365,7 +365,7 @@ services:
     volumes:
       - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/validator3:/root/validatordata
+      - validator3_data:/root/validatordata
     depends_on:
       - beacon3
     networks:
@@ -391,7 +391,7 @@ services:
     volumes:
       - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/validator4:/root/validatordata
+      - validator4_data:/root/validatordata
     depends_on:
       - beacon4
     networks:
@@ -417,7 +417,7 @@ services:
     volumes:
       - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
       - /opt/liveness/config:/root/config
-      - /opt/liveness/data/validator5:/root/validatordata
+      - validator5_data:/root/validatordata
     depends_on:
       - beacon5
     networks:
@@ -429,3 +429,41 @@ networks:
     ipam:
       config:
         - subnet: 172.86.1.0/24
+
+volumes:
+  mysql_data:
+    driver: local
+  execute1_data:
+    driver: local
+  execute2_data:
+    driver: local
+  execute3_data:
+    driver: local
+  execute4_data:
+    driver: local
+  execute5_data:
+    driver: local
+  attacker1_data:
+    driver: local
+  attacker2_data:
+    driver: local
+  beacon1_data:
+    driver: local
+  beacon2_data:
+    driver: local
+  beacon3_data:
+    driver: local
+  beacon4_data:
+    driver: local
+  beacon5_data:
+    driver: local
+  validator1_data:
+    driver: local
+  validator2_data:
+    driver: local
+  validator3_data:
+    driver: local
+  validator4_data:
+    driver: local
+  validator5_data:
+    driver: local
