@@ -150,7 +150,7 @@ services:
         constraints:
           - node.labels.service-set == 2
     volumes:
-      - /opt/liveness/config/attacker-normal.toml:/root/config.toml
+      - /opt/liveness/config/attacker-honest-config.toml:/root/config.toml
       - /opt/liveness/config/strategy-empty.json:/root/strategy.json
       - attacker2_data:/root/attackerdata
     networks:
