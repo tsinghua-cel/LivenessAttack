@@ -31,8 +31,6 @@ services:
       placement:
         constraints:
           - node.labels.service-set == 1
-    ports:
-      - "8545:8545"
     volumes:
       - /opt/liveness/config:/root/config
       - execute1_data:/root/gethdata
@@ -52,8 +50,6 @@ services:
       placement:
         constraints:
           - node.labels.service-set == 2
-    ports:
-      - "8545:8545"
     volumes:
       - /opt/liveness/config:/root/config
       - execute2_data:/root/gethdata
@@ -73,8 +69,6 @@ services:
       placement:
         constraints:
           - node.labels.service-set == 3
-    ports:
-      - "8545:8545"
     volumes:
       - /opt/liveness/config:/root/config
       - execute3_data:/root/gethdata
@@ -94,8 +88,6 @@ services:
       placement:
         constraints:
           - node.labels.service-set == 4
-    ports:
-      - "8545:8545"
     volumes:
       - /opt/liveness/config:/root/config
       - execute4_data:/root/gethdata
@@ -115,8 +107,6 @@ services:
       placement:
         constraints:
           - node.labels.service-set == 5
-    ports:
-      - "8545:8545"
     volumes:
       - /opt/liveness/config:/root/config
       - execute5_data:/root/gethdata
@@ -138,8 +128,6 @@ services:
       placement:
         constraints:
           - node.labels.service-set == 1
-    ports:
-      - "10000:10000"
     depends_on:
       - beacon1
       - beacon2
@@ -164,8 +152,6 @@ services:
       placement:
         constraints:
           - node.labels.service-set == 2
-    ports:
-      - "10000:10000"
     depends_on:
       - beacon1
       - beacon2
@@ -197,8 +183,10 @@ services:
         constraints:
           - node.labels.service-set == 1
     ports:
-      - "13000:13000"
-      - "3500:3500"
+      - target: 13000
+        published: 13000
+        protocol: tcp
+        mode: host
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
@@ -227,8 +215,10 @@ services:
         constraints:
           - node.labels.service-set == 2
     ports:
-      - "13000:13000"
-      - "3500:3500"
+      - target: 13000
+        published: 13000
+        protocol: tcp
+        mode: host
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
@@ -257,8 +247,10 @@ services:
         constraints:
           - node.labels.service-set == 3
     ports:
-      - "13000:13000"
-      - "3500:3500"
+      - target: 13000
+        published: 13000
+        protocol: tcp
+        mode: host
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
@@ -287,8 +279,10 @@ services:
         constraints:
           - node.labels.service-set == 4
     ports:
-      - "13000:13000"
-      - "3500:3500"
+      - target: 13000
+        published: 13000
+        protocol: tcp
+        mode: host
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
@@ -317,8 +311,10 @@ services:
         constraints:
           - node.labels.service-set == 5
     ports:
-      - "13000:13000"
-      - "3500:3500"
+      - target: 13000
+        published: 13000
+        protocol: tcp
+        mode: host
     volumes:
       - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
       - /opt/liveness/config:/root/config
