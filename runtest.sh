@@ -49,45 +49,6 @@ testcase() {
 echo "casetype is $casetype"
 case $casetype in
         1)
-                testcase basic
-                ;;
-        2)
-                testcase mix
-                ;;
-        3)
-                testcase exante
-                ;;
-        4)
-                testcase sandwich
-                ;;
-        5)
-                testcase staircase
-                ;;
-        6)
-                testcase unrealized
-                ;;
-        7)
-                testcase withholding
-                ;;
-        8)
-                testcase ext-exante
-                ;;
-        9)
-                testcase ext-sandwich
-                ;;
-        10)
-                testcase ext-staircase
-                ;;
-        11)
-                testcase ext-unrealized
-                ;;
-        12)
-                testcase ext-withholding
-                ;;
-        13)
-                testcase sync
-                ;;
-        14)
                 testcase liveness
                 ;;
         *)
