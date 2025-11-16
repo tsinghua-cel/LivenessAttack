@@ -1,9 +1,35 @@
 #!/bin/sh
+set -e
+
 echo "beacon node with MAXPeers=${MAXPEERS} allpeer=${ALLPEERS} and EXECUTE=$EXECUTE, p2pkey=${P2PKEY}"
 
+
+# Wait for services to be available and resolve IPs
+ALLPEERS=""
+# Old versions of sh may not have IFS
+# IFS=','
+for peer_service in $(echo $PEER_SERVICES | sed "s/,/ /g"); do
+  echo "Waiting for $peer_service to be available..."
+  while ! getent hosts $peer_service; do
+    sleep 1
+  done
+  PEER_IP=$(getent hosts $peer_service | awk '{ print $1 }')
+  # Assuming the p2p key is what is needed for the peer ID.
+  # The format /p2p/<p2p-key> is a guess based on libp2p conventions.
+  # You may need to adjust this based on what the beacon-node expects.
+  # I am also assuming a default port of 13000 for p2p communication.
+  peerid_var_name=$(echo PEERID_$(echo $peer_service))
+  peerid_value=${printenv $peerid_var_name}
+
+  ALLPEERS="$ALLPEERS --peer /ip4/$PEER_IP/tcp/13000/p2p/$peerid_value"
+  echo "Resolved $peer_service to $PEER_IP"
+done
+
+
 if [ "$BOOT_DELAY" != "" ] &&  [ "$BOOT_DELAY" != "0" ];then
-                sleep $BOOT_DELAY
+      sleep $BOOT_DELAY
 fi
+
 
 sleep 5 && /usr/bin/beacon-chain \
         --datadir=/root/beacondata \

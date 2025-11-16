@@ -13,9 +13,9 @@ services:
           - node.labels.role == mysql
     volumes:
       - /etc/localtime:/etc/localtime
-      - ${BASEDIR}./data/mysql/data:/var/lib/mysql
-      - ${BASEDIR}./config/mysql/conf/my.cnf:/etc/my.cnf
-      - ${BASEDIR}./config/mysql/init:/docker-entrypoint-initdb.d/
+      - /opt/liveness/data/mysql/data:/var/lib/mysql
+      - /opt/liveness/config/mysql/conf/my.cnf:/etc/my.cnf
+      - /opt/liveness/config/mysql/init:/docker-entrypoint-initdb.d/
     networks:
       - meta
 
@@ -32,9 +32,9 @@ services:
         constraints:
           - node.labels.service-set == 1
     volumes:
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/execute1:/root/gethdata
-      - ${BASEDIR}./entrypoint/execute.sh:/usr/local/bin/execution.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/execute1:/root/gethdata
+      - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
 
@@ -51,9 +51,9 @@ services:
         constraints:
           - node.labels.service-set == 2
     volumes:
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/execute2:/root/gethdata
-      - ${BASEDIR}./entrypoint/execute.sh:/usr/local/bin/execution.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/execute2:/root/gethdata
+      - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
 
@@ -70,9 +70,9 @@ services:
         constraints:
           - node.labels.service-set == 3
     volumes:
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/execute3:/root/gethdata
-      - ${BASEDIR}./entrypoint/execute.sh:/usr/local/bin/execution.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/execute3:/root/gethdata
+      - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
 
@@ -89,9 +89,9 @@ services:
         constraints:
           - node.labels.service-set == 4
     volumes:
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/execute4:/root/gethdata
-      - ${BASEDIR}./entrypoint/execute.sh:/usr/local/bin/execution.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/execute4:/root/gethdata
+      - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
 
@@ -108,9 +108,9 @@ services:
         constraints:
           - node.labels.service-set == 5
     volumes:
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/execute5:/root/gethdata
-      - ${BASEDIR}./entrypoint/execute.sh:/usr/local/bin/execution.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/execute5:/root/gethdata
+      - /opt/liveness/execute.sh:/usr/local/bin/execution.sh
     networks:
       - meta
 
@@ -129,9 +129,9 @@ services:
         constraints:
           - node.labels.service-set == 1
     volumes:
-      - ${BASEDIR}./config/attacker-config.toml:/root/config.toml
-      - ${BASEDIR}./config/strategy-empty.json:/root/strategy.json
-      - ${BASEDIR}./data/attacker1:/root/attackerdata
+      - /opt/liveness/config/attacker-config.toml:/root/config.toml
+      - /opt/liveness/config/strategy-empty.json:/root/strategy.json
+      - /opt/liveness/data/attacker1:/root/attackerdata
     networks:
       - meta
 
@@ -150,9 +150,9 @@ services:
         constraints:
           - node.labels.service-set == 2
     volumes:
-      - ${BASEDIR}./config/attacker-normal.toml:/root/config.toml
-      - ${BASEDIR}./config/strategy-empty.json:/root/strategy.json
-      - ${BASEDIR}./data/attacker2:/root/attackerdata
+      - /opt/liveness/config/attacker-normal.toml:/root/config.toml
+      - /opt/liveness/config/strategy-empty.json:/root/strategy.json
+      - /opt/liveness/data/attacker2:/root/attackerdata
     networks:
       - meta
 
@@ -177,9 +177,9 @@ services:
         constraints:
           - node.labels.service-set == 1
     volumes:
-      - ${BASEDIR}./beacon.sh:/usr/local/bin/beacon.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/beacon1:/root/beacondata
+      - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/beacon1:/root/beacondata
     depends_on:
       - execute1
     networks:
@@ -204,9 +204,9 @@ services:
         constraints:
           - node.labels.service-set == 2
     volumes:
-      - ${BASEDIR}./beacon.sh:/usr/local/bin/beacon.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/beacon2:/root/beacondata
+      - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/beacon2:/root/beacondata
     depends_on:
       - execute2
     networks:
@@ -231,9 +231,9 @@ services:
         constraints:
           - node.labels.service-set == 3
     volumes:
-      - ${BASEDIR}./beacon.sh:/usr/local/bin/beacon.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/beacon3:/root/beacondata
+      - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/beacon3:/root/beacondata
     depends_on:
       - execute3
     networks:
@@ -258,9 +258,9 @@ services:
         constraints:
           - node.labels.service-set == 4
     volumes:
-      - ${BASEDIR}./beacon.sh:/usr/local/bin/beacon.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/beacon4:/root/beacondata
+      - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/beacon4:/root/beacondata
     depends_on:
       - execute4
     networks:
@@ -285,9 +285,9 @@ services:
         constraints:
           - node.labels.service-set == 5
     volumes:
-      - ${BASEDIR}./beacon.sh:/usr/local/bin/beacon.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/beacon5:/root/beacondata
+      - /opt/liveness/beacon.sh:/usr/local/bin/beacon.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/beacon5:/root/beacondata
     depends_on:
       - execute5
     networks:
@@ -311,9 +311,9 @@ services:
         constraints:
           - node.labels.service-set == 1
     volumes:
-      - ${BASEDIR}./entrypoint/validator.sh:/usr/local/bin/validator.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/validator1:/root/validatordata
+      - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/validator1:/root/validatordata
     depends_on:
       - beacon1
     networks:
@@ -337,9 +337,9 @@ services:
         constraints:
           - node.labels.service-set == 2
     volumes:
-      - ${BASEDIR}./entrypoint/validator.sh:/usr/local/bin/validator.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/validator2:/root/validatordata
+      - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/validator2:/root/validatordata
     depends_on:
       - beacon2
     networks:
@@ -363,9 +363,9 @@ services:
         constraints:
           - node.labels.service-set == 3
     volumes:
-      - ${BASEDIR}./entrypoint/validator.sh:/usr/local/bin/validator.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/validator3:/root/validatordata
+      - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/validator3:/root/validatordata
     depends_on:
       - beacon3
     networks:
@@ -389,9 +389,9 @@ services:
         constraints:
           - node.labels.service-set == 4
     volumes:
-      - ${BASEDIR}./validator.sh:/usr/local/bin/validator.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/validator4:/root/validatordata
+      - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/validator4:/root/validatordata
     depends_on:
       - beacon4
     networks:
@@ -415,9 +415,9 @@ services:
         constraints:
           - node.labels.service-set == 5
     volumes:
-      - ${BASEDIR}./validator.sh:/usr/local/bin/validator.sh
-      - ${BASEDIR}./config:/root/config
-      - ${BASEDIR}./data/validator5:/root/validatordata
+      - /opt/liveness/validator.sh:/usr/local/bin/validator.sh
+      - /opt/liveness/config:/root/config
+      - /opt/liveness/data/validator5:/root/validatordata
     depends_on:
       - beacon5
     networks:
