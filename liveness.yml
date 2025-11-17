@@ -115,7 +115,7 @@ services:
       - meta
 
   attacker1:
-    image: tscel/bunnyfinder:latest
+    image: tscel/bunnyfinder:liveness
     entrypoint: attacker --config /root/config.toml --strategy ext_withholding --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel info
     environment:
       - NAME=attacker1
@@ -139,7 +139,7 @@ services:
       - meta
 
   attacker2:
-    image: tscel/bunnyfinder:latest
+    image: tscel/bunnyfinder:liveness
     entrypoint: attacker --config /root/config.toml --strategy ext_withholding --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel info
     environment:
       - NAME=attacker2
