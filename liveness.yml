@@ -199,6 +199,8 @@ services:
   beacon2:
     image: tscel/bf.prysm:v5.2.0-liveness
     entrypoint: /usr/local/bin/beacon.sh
+    env_file:
+      - .env
     environment:
       - PEER_SERVICES=beacon1,beacon3,beacon4,beacon5
       - EXECUTE=execute2
@@ -231,6 +233,8 @@ services:
   beacon3:
     image: tscel/bf.prysm:v5.2.0-liveness
     entrypoint: /usr/local/bin/beacon.sh
+    env_file:
+      - .env
     environment:
       - PEER_SERVICES=beacon1,beacon2,beacon4,beacon5
       - EXECUTE=execute3
@@ -263,6 +267,8 @@ services:
   beacon4:
     image: tscel/bf.prysm:v5.2.0-liveness
     entrypoint: /usr/local/bin/beacon.sh
+    env_file:
+      - .env
     environment:
       - PEER_SERVICES=beacon1,beacon2,beacon3,beacon5
       - EXECUTE=execute4
@@ -295,6 +301,8 @@ services:
   beacon5:
     image: tscel/bf.prysm:v5.2.0-liveness
     entrypoint: /usr/local/bin/beacon.sh
+    env_file:
+      - .env
     environment:
       - PEER_SERVICES=beacon1,beacon2,beacon3,beacon4
       - EXECUTE=execute5
