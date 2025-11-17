@@ -172,7 +172,7 @@ services:
       - EXECUTE=execute1
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker1:10000
-      - P2PKEY=${P2PKEY_beacon1}
+      - P2PKEY=0692f57d5ddf34d0f2649d968bf82e2dda69d1f435a7f3a7a26d81a1a11e687b
     deploy:
       restart_policy:
         condition: on-failure
@@ -204,7 +204,7 @@ services:
       - EXECUTE=execute2
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker1:10000
-      - P2PKEY=${P2PKEY_beacon2}
+      - P2PKEY=9edcc99209261dfca0d5b79cd1ff43e2e30005c629337d921711bb77fa816dd3
     deploy:
       restart_policy:
         condition: on-failure
@@ -236,7 +236,7 @@ services:
       - EXECUTE=execute3
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker2:10000
-      - P2PKEY=${P2PKEY_beacon3}
+      - P2PKEY=9513c7244d2983d47b54df161a3fc981b946944d7c2bba338588e0ab7dc40777
     deploy:
       restart_policy:
         condition: on-failure
@@ -268,7 +268,7 @@ services:
       - EXECUTE=execute4
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker2:10000
-      - P2PKEY=${P2PKEY_beacon4}
+      - P2PKEY=c118a256c6aa383b0d02a6ac25139566bc042c837f248e71aa38fcd961dac8aa
     deploy:
       restart_policy:
         condition: on-failure
@@ -300,7 +300,7 @@ services:
       - EXECUTE=execute5
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker2:10000
-      - P2PKEY=${P2PKEY_beacon5}
+      - P2PKEY=f01cd004ad47970f7ca62dadb1921a173c9686cf11e963c04d8a81f36322fd9f
     deploy:
       restart_policy:
         condition: on-failure
