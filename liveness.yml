@@ -115,7 +115,7 @@ services:
       - meta
 
   attacker1:
-    image: tscel/bunnyfinder:liveness
+    image: tscel/bunnyfinder:liveness-multi
     entrypoint: attacker --config /root/config.toml --strategy ext_withholding --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel info
     environment:
       - NAME=attacker1
@@ -139,7 +139,7 @@ services:
       - meta
 
   attacker2:
-    image: tscel/bunnyfinder:liveness
+    image: tscel/bunnyfinder:liveness-multi
     entrypoint: attacker --config /root/config.toml --strategy ext_withholding --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel info
     environment:
       - NAME=attacker2
@@ -163,7 +163,7 @@ services:
       - meta
 
   beacon1:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/beacon.sh
     env_file:
       - .env
@@ -198,7 +198,7 @@ services:
       - meta
 
   beacon2:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/beacon.sh
     env_file:
       - .env
@@ -233,12 +233,13 @@ services:
       - meta
 
   beacon3:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/beacon.sh
     env_file:
       - .env
     environment:
       - PEER_SERVICES=beacon1,beacon2,beacon4,beacon5
+      - FRIENDS_SERVICES=beacon4,beacon5
       - EXECUTE=execute3
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker2:10000
@@ -267,12 +268,13 @@ services:
       - meta
 
   beacon4:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/beacon.sh
     env_file:
       - .env
     environment:
       - PEER_SERVICES=beacon1,beacon2,beacon3,beacon5
+      - FRIENDS_SERVICES=beacon3,beacon5
       - EXECUTE=execute4
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker2:10000
@@ -301,12 +303,13 @@ services:
       - meta
 
   beacon5:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/beacon.sh
     env_file:
       - .env
     environment:
       - PEER_SERVICES=beacon1,beacon2,beacon3,beacon4
+      - FRIENDS_SERVICES=beacon3,beacon4
       - EXECUTE=execute5
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker2:10000
@@ -335,7 +338,7 @@ services:
       - meta
 
   validator1:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
       - VALIDATORS_NUM=86
@@ -361,7 +364,7 @@ services:
       - meta
 
   validator2:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
       - VALIDATORS_NUM=50
@@ -387,7 +390,7 @@ services:
       - meta
 
   validator3:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
       - VALIDATORS_NUM=51
@@ -413,7 +416,7 @@ services:
       - meta
 
   validator4:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
       - VALIDATORS_NUM=51
@@ -439,7 +442,7 @@ services:
       - meta
 
   validator5:
-    image: tscel/bf.prysm:v5.2.0-liveness
+    image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
       - VALIDATORS_NUM=18
