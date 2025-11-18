@@ -3,6 +3,7 @@ set -e
 
 echo "beacon node with MAXPeers=${MAXPEERS} allpeer=${ALLPEERS} and EXECUTE=$EXECUTE, p2pkey=${P2PKEY}"
 
+ALLPEERS=""
 
 # POSIX shell
 for peer_service in $(echo "$PEER_SERVICES" | sed 's/,/ /g'); do
@@ -20,10 +21,22 @@ for peer_service in $(echo "$PEER_SERVICES" | sed 's/,/ /g'); do
 done
 
 
+FRIENDS=""
+
+# POSIX shell
+for friends_service in $(echo "$FRIENDS_SERVICES" | sed 's/,/ /g'); do
+  peerid_var_name="PEERID_${friends_service}"
+  peerid_value=$(printenv "$peerid_var_name" || true)
+
+  FRIENDS="${FRIENDS}:${peerid_value}"
+done
+
+
 if [ "$BOOT_DELAY" != "" ] &&  [ "$BOOT_DELAY" != "0" ];then
       sleep $BOOT_DELAY
 fi
 
+export PEER_FRIENDS="${FRIENDS}"
 
 sleep 5 && /usr/bin/beacon-chain \
         --datadir=/root/beacondata \

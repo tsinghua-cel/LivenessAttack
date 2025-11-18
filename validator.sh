@@ -3,7 +3,7 @@
 echo "bootstart validator with validators_num=${VALIDATORS_NUM} and index=${VALIDATORS_INDEX} and beacon $BEACONRPC"
 
 if [ "$BOOT_DELAY" != "" ] &&  [ "$BOOT_DELAY" != "0" ];then
-                sleep $BOOT_DELAY
+  sleep $BOOT_DELAY
 fi
 
 /usr/bin/validator   --datadir=/root/validatordata   \

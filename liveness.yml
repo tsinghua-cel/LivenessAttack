@@ -169,6 +169,7 @@ services:
       - .env
     environment:
       - PEER_SERVICES=beacon2,beacon3,beacon4,beacon5
+      - FRIENDS_SERVICES=beacon2
       - EXECUTE=execute1
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker1:10000
@@ -203,6 +204,7 @@ services:
       - .env
     environment:
       - PEER_SERVICES=beacon1,beacon3,beacon4,beacon5
+      - FRIENDS_SERVICES=beacon1
       - EXECUTE=execute2
       - MAXPEERS=70
       - ATTACKER_SERVICE_URL=http://attacker1:10000
