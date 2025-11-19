@@ -116,7 +116,7 @@ services:
 
   attacker1:
     image: tscel/bunnyfinder:liveness-multi
-    entrypoint: attacker --config /root/config.toml --strategy ext_withholding --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel info
+    entrypoint: attacker --config /root/config.toml --strategy liveness --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel debug
     environment:
       - NAME=attacker1
     deploy:
@@ -140,7 +140,7 @@ services:
 
   attacker2:
     image: tscel/bunnyfinder:liveness-multi
-    entrypoint: attacker --config /root/config.toml --strategy ext_withholding --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel info
+    entrypoint: attacker --config /root/config.toml --strategy livenessnormal --max-hack-idx 85 --logpath /root/attackerdata/d.log --loglevel debug
     environment:
       - NAME=attacker2
     deploy:
