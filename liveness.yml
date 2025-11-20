@@ -341,7 +341,7 @@ services:
     image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=86
+      - VALIDATORS_NUM=50
       - VALIDATORS_INDEX=0
       - BEACONRPC=beacon1:4000
       - ATTACKER_SERVICE_URL=http://attacker1:10000
@@ -367,8 +367,8 @@ services:
     image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=50
-      - VALIDATORS_INDEX=86
+      - VALIDATORS_NUM=36
+      - VALIDATORS_INDEX=50
       - BEACONRPC=beacon2:4000
       - ATTACKER_SERVICE_URL=http://attacker1:10000
     deploy:
@@ -393,8 +393,8 @@ services:
     image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=51
-      - VALIDATORS_INDEX=136
+      - VALIDATORS_NUM=70
+      - VALIDATORS_INDEX=86
       - BEACONRPC=beacon3:4000
       - ATTACKER_SERVICE_URL=http://attacker2:10000
     deploy:
@@ -419,8 +419,8 @@ services:
     image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=51
-      - VALIDATORS_INDEX=187
+      - VALIDATORS_NUM=70
+      - VALIDATORS_INDEX=156
       - BEACONRPC=beacon4:4000
       - ATTACKER_SERVICE_URL=http://attacker2:10000
     deploy:
@@ -445,8 +445,8 @@ services:
     image: tscel/bf.prysm:v5.2.0-liveness-multi
     entrypoint: /usr/local/bin/validator.sh
     environment:
-      - VALIDATORS_NUM=18
-      - VALIDATORS_INDEX=238
+      - VALIDATORS_NUM=30
+      - VALIDATORS_INDEX=226
       - BEACONRPC=beacon5:4000
       - ATTACKER_SERVICE_URL=http://attacker2:10000
     deploy:
